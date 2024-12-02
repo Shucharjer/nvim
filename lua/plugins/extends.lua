@@ -11,7 +11,7 @@ local inorekey = utils.inorekey
 local norekey = utils.norekey
 local xnorekey = utils.xnorekey
 
-
+norekey("ng", ":Neogen<CR>", "Generate doxygen comment")
 
 return {
     {
@@ -34,7 +34,6 @@ return {
         end,
         config = function(_, opts)
             require("neogen").setup(opts)
-            norekey("ng", ":Neogen", "Generate doxygen comment")
         end
     },
     {

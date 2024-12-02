@@ -31,7 +31,10 @@ end, "Format and save the file")
 --  fm      ->  格式化
 norekey("fm", function() vim.lsp.buf.format() end, "Fomat the document")
 --  Ctrl+s  ->  格式化并保存
-norekey("<C-s>", ":w<CR>", "Format and save the file")
+norekey("<C-s>", function()
+    vim.lsp.buf.format()
+    vim.cmd("w")
+end, "Format and save the file")
 --  Ctrl+l  ->  跳转到最近编辑的缓冲区
 norekey("<C-l>", ":b#<CR>", "Switch to the buffer just edited")
 --  nh      ->  取消搜索之后的高亮[no highlight]

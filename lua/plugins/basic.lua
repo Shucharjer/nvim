@@ -16,6 +16,7 @@ local xnorekey = utils.xnorekey
 
 local is_android = vim.fn.isdirectory('/data') == 1 -- true if on android
 
+
 return {
     {
         "Mofiqul/vscode.nvim",
@@ -48,8 +49,8 @@ return {
     -- open_for_directories = true,
     -- }
     -- },
-    --  除此之外，感觉telescope的文件管理器也还不错
-    --  如果要试试的话就把yazi和tfm注释掉，把下面telescope的文件浏览器那里的注释取消掉
+    --除此之外，感觉telescope的文件管理器也还不错
+    --如果要试试的话就把yazi和tfm注释掉，把下面telescope的文件浏览器那里的注释取消掉
     {
         "Rolv-Apneseth/tfm.nvim",
         opts = {
@@ -64,10 +65,8 @@ return {
             },
             ui = {
                 border = "rounded",
-                height = 0.9,
-                width = 0.9,
-                x = 0.45,
-                y = 0.45
+                height = 0.90,
+                width = 1,
             },
         },
         config = function(_, opts)
@@ -101,7 +100,7 @@ return {
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
-        lazy = true,
+        lazy = false,
         dependencies = {
             {
                 "nvim-lua/plenary.nvim"
@@ -117,21 +116,26 @@ return {
             --},
             --  如果希望使用它的文件浏览器就把注释取消掉
             -- {
-            -- "nvim-telescope/telescope-file-browser.nvim"
+            --     "nvim-telescope/telescope-file-browser.nvim"
             -- }
         },
-        cmd = {
-            "Telescope",
-            "Telescope buffers",
-            "Telescope colorscheme",
-            "Telescope current_buffer_fuzzy_find",
-            "Telescope diagnostics",
-            "Telescope live_grep",
-            "Telescope fd",
-            "Telescope jumplist"
-        },
+        -- cmd = {
+        --     "Telescope",
+        --     "Telescope buffers",
+        --     "Telescope colorscheme",
+        --     "Telescope current_buffer_fuzzy_find",
+        --     "Telescope diagnostics",
+        --     "Telescope live_grep",
+        --     "Telescope fd",
+        --     "Telescope jumplist"
+        -- },
         opts = function()
             local actions = require("telescope.actions")
+            local fb_actions = nil
+            if utils.is_available("telescope-file-browser.nvim") then
+                fb_actions = require("telescope").extensions.file_browser.actions
+            end
+
             return {
                 layout_config = {
                     horizontal = {
@@ -165,36 +169,36 @@ return {
                 extensions = {
                     --  如果希望使用telescope的文件浏览器就把下面这块的注释取消掉
                     -- file_browser = {
-                    -- -- disable netr and use telescope-file-browser
-                    -- hijack_netrw = true,
-                    -- depth = -1,
-                    -- auto_depth = true,
-                    -- ignore = {
-                    -- "node_modules",
-                    -- ".git",
-                    -- },
-                    -- mappings = {
-                    -- ["i"] = {
-                    -- ["<C-n>"] = fb_actions.create,
-                    -- ["<C-f>"] = fb_actions.create_from_prompt,
-                    -- ["<C-d>"] = fb_actions.remove,
-                    -- ["<C-r>"] = fb_actions.rename,
-                    -- ["<C-m>"] = fb_actions.move,
-                    -- ["<C-h>"] = fb_actions.goto_cwd,
-                    -- ["<A-h>"] = fb_actions.goto_home_dir,
-                    -- ["<C-p>"] = fb_actions.goto_parent_dir,
-                    -- },
-                    -- ["n"] = {
-                    -- ["n"] = fb_actions.create,
-                    -- ["f"] = fb_actions.create_from_prompt,
-                    -- ["d"] = fb_actions.remove,
-                    -- ["r"] = fb_actions.rename,
-                    -- ["m"] = fb_actions.move,
-                    -- ["h"] = fb_actions.goto_cwd,
-                    -- ["H"] = fb_actions.goto_home_dir,
-                    -- ["p"] = fb_actions.goto_parent_dir,
-                    -- },
-                    -- },
+                    --     -- disable netr and use telescope-file-browser
+                    --     hijack_netrw = true,
+                    --     depth = -1,
+                    --     auto_depth = true,
+                    --     ignore = {
+                    --         "node_modules",
+                    --         ".git",
+                    --     },
+                    --     mappings = {
+                    --         ["i"] = {
+                    --             ["<C-n>"] = fb_actions.create,
+                    --             ["<C-f>"] = fb_actions.create_from_prompt,
+                    --             ["<C-d>"] = fb_actions.remove,
+                    --             ["<C-r>"] = fb_actions.rename,
+                    --             ["<C-m>"] = fb_actions.move,
+                    --             ["<C-h>"] = fb_actions.goto_cwd,
+                    --             ["<A-h>"] = fb_actions.goto_home_dir,
+                    --             ["<C-p>"] = fb_actions.goto_parent_dir,
+                    --         },
+                    --         ["n"] = {
+                    --             ["n"] = fb_actions.create,
+                    --             ["f"] = fb_actions.create_from_prompt,
+                    --             ["d"] = fb_actions.remove,
+                    --             ["r"] = fb_actions.rename,
+                    --             ["m"] = fb_actions.move,
+                    --             ["h"] = fb_actions.goto_cwd,
+                    --             ["H"] = fb_actions.goto_home_dir,
+                    --             ["p"] = fb_actions.goto_parent_dir,
+                    --         },
+                    --     },
                     -- },
                     fzf = {
                         fuzzy = true,
@@ -217,6 +221,10 @@ return {
             if utils.is_available("telescope-live-grep-args.nvim") then
                 require("telescope").load_extension(
                     "live_grep_args")
+            end
+            if utils.is_available("telescope-file-browser.nvim") then
+                telescope.load_extension("file_browser")
+                norekey("fb", ":Telescope file_browser<CR>", "Open file browser")
             end
 
             --  ff      ->  寻找文件[find file]
@@ -241,18 +249,23 @@ return {
         dependencies = { "tpope/vim-repeat" },
         config = function()
             --  s       ->  向前跳
-            xnorekey("s", "<Plug>(leap-forward)", "Leap forward")
-            --  S       ->  向后跳
-            xnorekey("S", "<Plug>(leap-backward)", "Leap backward")
-            --  s       ->  向前跳
-            norekey("s", "<Plug>(leap-forward)", "Leap forward")
-            --  S       ->  向后跳
-            norekey("S", "<Plug>(leap-backward)", "Leap backward")
+            vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward)", { desc = "Leap forward" })
+            vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)", { desc = "Leap backward" })
+            --  s<space>->
+            norekey("s<space>", "<Plug>(leap-forward-to)", "Leap forward to")
+            --  S<space>->
+            norekey("S<space>", "<Plug>(leap-backward-to)", "Leap backward to")
+
+            require("leap.user").set_repeat_keys("<C-j>", "<C-k>",
+                { relative_directions = false, modes = { "n", "x", "o" } })
         end,
     },
     {
         "windwp/nvim-autopairs",
-        event = "BufEnter"
+        event = "BufEnter",
+        config = function()
+            require("nvim-autopairs").setup()
+        end
     },
     {
         "HiPhish/rainbow-delimiters.nvim",

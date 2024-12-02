@@ -27,14 +27,24 @@ local function load_configurations_async(configurations)
 end
 
 
---  加载配置
-load_configurations({
-    "options", -- 一些选项
-    "lazycfg", -- lazy.nvim
-    "autocmds" -- 自动命令
-})
---  异步加载配置
-load_configurations_async({
-    "normal-mappings", -- 按键映射
-    "colorscheme"
-})
+if vim.g.vscode then
+    local vscode = require("vscode")
+    vim.notify = vscode.notify
+    vscode.notify("Most configurations are not supported for Vscode Neovim")
+
+    load_configurations({
+        "options",
+    })
+else
+    --  加载配置
+    load_configurations({
+        "options", -- 一些选项
+        "lazycfg", -- lazy.nvim
+        "autocmds" -- 自动命令
+    })
+    --  异步加载配置
+    load_configurations_async({
+        "normal-mappings", -- 按键映射
+        "colorscheme"
+    })
+end
