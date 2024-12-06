@@ -176,7 +176,7 @@ return {
         },
         config = function(_, opts)
             require("mason").setup(opts)
-            vim.cmd("MasonUpdate")
+            -- vim.cmd("MasonUpdate")
         end
     },
     --  LSP自动配置
@@ -287,7 +287,7 @@ return {
                 keys = {
                     select = "x",
                     exec = "<CR>",
-                    quit = "q",
+                    quit = "<C-c>",
                 },
             },
             outline = {
@@ -462,39 +462,39 @@ return {
     -- cmake
     {
         "Civitasv/cmake-tools.nvim",
-        lazy = false,
+        -- lazy = false,
         -- Lazy loading of cmake-tools
         -- causes the build folder to be generated in the directory
         -- where the CMake instructions are called.
-        -- cmd = {
-        --     "CMakeBuild",
-        --     "CMakeBuildCurrentFile",
-        --     "CMakeClean",
-        --     "CMakeCloseExecutor",
-        --     "CMakeDebug",
-        --     "CMakeGenerate",
-        --     "CMakeRunner",
-        --     "CMakeOpenExecutor",
-        --     "CMakeOpenRunner",
-        --     "CMakeQuickBuild",
-        --     "CMakeQuickRun",
-        --     "CMakeQuickStart",
-        --     "CMakeRun",
-        --     "CMakeRunCurrentFile",
-        --     "CMakeRunTest",
-        --     "CMakeSelectBuildDir",
-        --     "CMakeSelectBuildPreset",
-        --     "CMakeSelectBuildTarget",
-        --     "CMakeSelectBuildType",
-        --     "CMakeSelectConfigurePreset",
-        --     "CMakeSelectCwd",
-        --     "CMakeSelectKit",
-        --     "CMakeSelectLaunchTarget",
-        --     "CMakeSettings",
-        --     "CMakeStopExecutor",
-        --     "CMakeStopRunner",
-        --     "CMakeTargetSettings"
-        -- },
+        cmd = {
+            "CMakeBuild",
+            "CMakeBuildCurrentFile",
+            "CMakeClean",
+            "CMakeCloseExecutor",
+            "CMakeDebug",
+            "CMakeGenerate",
+            "CMakeRunner",
+            "CMakeOpenExecutor",
+            "CMakeOpenRunner",
+            "CMakeQuickBuild",
+            "CMakeQuickRun",
+            "CMakeQuickStart",
+            "CMakeRun",
+            "CMakeRunCurrentFile",
+            "CMakeRunTest",
+            "CMakeSelectBuildDir",
+            "CMakeSelectBuildPreset",
+            "CMakeSelectBuildTarget",
+            "CMakeSelectBuildType",
+            "CMakeSelectConfigurePreset",
+            "CMakeSelectCwd",
+            "CMakeSelectKit",
+            "CMakeSelectLaunchTarget",
+            "CMakeSettings",
+            "CMakeStopExecutor",
+            "CMakeStopRunner",
+            "CMakeTargetSettings"
+        },
         opts = function()
             return {
                 cmake_command = "cmake",

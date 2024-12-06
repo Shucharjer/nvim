@@ -8,6 +8,12 @@
 --      repeat              它的依赖
 --  autopairs               括号匹配
 --  rainbow-delimiters      彩虹括号
+--  airline-themes          airline主题
+--  notify                  提示
+--  bufferline              缓冲区栏
+--  noice
+--  comment
+--  move                    移动行/块                            8 key bindings
 -------------------------------------------------------------------------------
 local utils = require("plugins.utils")
 local inorekey = utils.inorekey
@@ -42,58 +48,64 @@ return {
     },
     --  使用了tfm就不必使用yazi了
     -- {
-    -- "mikavilpas/yazi.nvim",
-    -- event = "User BaseDefered",
-    -- cmd = { "Yazi", "Yazi cwd", "Yazi toggle" },
-    -- opts = {
-    -- open_for_directories = true,
-    -- }
+    --     "mikavilpas/yazi.nvim",
+    --     event = "VeryLazy",
+    --     keys = {
+    --         {
+    --             "fb",
+    --             "<cmd>Yazi<cr>",
+    --             desc = "Open yazi at the current file"
+    --         }
+    --     },
+    --     opts = {
+    --         open_for_directories = true,
+    --     }
     -- },
     --除此之外，感觉telescope的文件管理器也还不错
     --如果要试试的话就把yazi和tfm注释掉，把下面telescope的文件浏览器那里的注释取消掉
-    {
-        "Rolv-Apneseth/tfm.nvim",
-        opts = {
-            file_manager = "yazi",
-            replace_netrw = true,
-            enable_cmds = true,
-            keybingds = {
-                ["<Ecs>"] = "q",
-                ["<C-v>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.vsplit)<CR>",
-                ["<C-h>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.split)<CR>",
-                ["<C-t>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.tabedit)<CR>",
-            },
-            ui = {
-                border = "rounded",
-                height = 0.90,
-                width = 1,
-            },
-        },
-        config = function(_, opts)
-            require("tfm").setup(opts)
-            vim.api.nvim_set_keymap("n", "fb", "",
-                { noremap = true, callback = require("tfm").open }
-            )
-        end
-        --  移动：hjkl gg G
-        --  r   ->  rename
-        --  a   ->  create
-        --  f   ->  filter
-        --  y   ->  yank
-        --  p   ->  paste
-        --  d   ->  delete
-        --  s   ->  search  via fd
-        --  c   ->  c   ->  copy path
-        --          d   ->  copy directory path
-        --          f   ->  copy filename
-        --          n   ->  copy filename with
-        --  o   ->  open
-        --  q   ->  quit
-        --  w   ->  tasks
-        --  支持选择
-        --  很生草的一件事情：创建文件夹只能用命令
-        --      比如`:mkdir example`
-    },
+    -- {
+    --     "Rolv-Apneseth/tfm.nvim",
+    --     opts = {
+    --         file_manager = "yazi",
+    --         replace_netrw = true,
+    --         enable_cmds = true,
+    --         keybingds = {
+    --             ["<Ecs>"] = "q",
+    --             ["<C-v>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.vsplit)<CR>",
+    --             ["<C-h>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.split)<CR>",
+    --             ["<C-t>"] = "<C-\\><C-O>:lua require('tfm').set_next_open_mode(require('tfm').OPEN_MODE.tabedit)<CR>",
+    --         },
+    --         ui = {
+    --             border = "rounded",
+    --             height = 0.90,
+    --             width = 1,
+    --         },
+    --     },
+    --     config = function(_, opts)
+    --         require("tfm").setup(opts)
+    --         vim.api.nvim_set_keymap("n", "fb", "",
+    --             { noremap = true, callback = require("tfm").open }
+    --         )
+    --     end
+    --     --  移动：hjkl gg G
+    --     --  r   ->  rename
+    --     --  a   ->  create
+    --     --  f   ->  filter
+    --     --  y   ->  yank
+    --     --  p   ->  paste
+    --     --  d   ->  delete
+    --     --  s   ->  search  via fd
+    --     --  c   ->  c   ->  copy path
+    --     --          d   ->  copy directory path
+    --     --          f   ->  copy filename
+    --     --          n   ->  copy filename with
+    --     --  o   ->  open
+    --     --  q   ->  quit
+    --     --  w   ->  tasks
+    --     --  支持选择
+    --     --  很生草的一件事情：创建文件夹只能用命令
+    --     --      比如`:mkdir example`
+    -- },
     {
         "nvim-lua/plenary.nvim",
     },
@@ -115,9 +127,9 @@ return {
             --"nvim-telescope/telescope-dap.nvim"
             --},
             --  如果希望使用它的文件浏览器就把注释取消掉
-            -- {
-            --     "nvim-telescope/telescope-file-browser.nvim"
-            -- }
+            {
+                "nvim-telescope/telescope-file-browser.nvim"
+            }
         },
         -- cmd = {
         --     "Telescope",
@@ -155,51 +167,51 @@ return {
                             ["<C-j>"] = actions.move_selection_next,
                             ["<C-k>"] = actions.move_selection_previous,
                             ["<C-o>"] = actions.select_default,
-                            ["<C-i>"] = actions.toggle_selection,
+                            ["<C-u>"] = actions.toggle_selection,
                             ["<C-a>"] = actions.select_all,
                         },
                         n = {
                             ["<C-c>"] = actions.close,
                             ["o"] = actions.select_default,
-                            ["i"] = actions.toggle_selection,
+                            ["u"] = actions.toggle_selection,
                             ["a"] = actions.select_all,
                         }
                     }
                 },
                 extensions = {
                     --  如果希望使用telescope的文件浏览器就把下面这块的注释取消掉
-                    -- file_browser = {
-                    --     -- disable netr and use telescope-file-browser
-                    --     hijack_netrw = true,
-                    --     depth = -1,
-                    --     auto_depth = true,
-                    --     ignore = {
-                    --         "node_modules",
-                    --         ".git",
-                    --     },
-                    --     mappings = {
-                    --         ["i"] = {
-                    --             ["<C-n>"] = fb_actions.create,
-                    --             ["<C-f>"] = fb_actions.create_from_prompt,
-                    --             ["<C-d>"] = fb_actions.remove,
-                    --             ["<C-r>"] = fb_actions.rename,
-                    --             ["<C-m>"] = fb_actions.move,
-                    --             ["<C-h>"] = fb_actions.goto_cwd,
-                    --             ["<A-h>"] = fb_actions.goto_home_dir,
-                    --             ["<C-p>"] = fb_actions.goto_parent_dir,
-                    --         },
-                    --         ["n"] = {
-                    --             ["n"] = fb_actions.create,
-                    --             ["f"] = fb_actions.create_from_prompt,
-                    --             ["d"] = fb_actions.remove,
-                    --             ["r"] = fb_actions.rename,
-                    --             ["m"] = fb_actions.move,
-                    --             ["h"] = fb_actions.goto_cwd,
-                    --             ["H"] = fb_actions.goto_home_dir,
-                    --             ["p"] = fb_actions.goto_parent_dir,
-                    --         },
-                    --     },
-                    -- },
+                    file_browser = {
+                        -- disable netr and use telescope-file-browser
+                        hijack_netrw = true,
+                        depth = -1,
+                        auto_depth = true,
+                        ignore = {
+                            "node_modules",
+                            ".git",
+                        },
+                        mappings = {
+                            ["i"] = {
+                                ["<C-n>"] = fb_actions.create,
+                                ["<C-f>"] = fb_actions.create_from_prompt,
+                                ["<C-d>"] = fb_actions.remove,
+                                ["<C-r>"] = fb_actions.rename,
+                                ["<C-m>"] = fb_actions.move,
+                                ["<C-h>"] = fb_actions.goto_cwd,
+                                ["<A-h>"] = fb_actions.goto_home_dir,
+                                ["<C-p>"] = fb_actions.goto_parent_dir,
+                            },
+                            ["n"] = {
+                                ["n"] = fb_actions.create,
+                                ["f"] = fb_actions.create_from_prompt,
+                                ["d"] = fb_actions.remove,
+                                ["r"] = fb_actions.rename,
+                                ["m"] = fb_actions.move,
+                                ["h"] = fb_actions.goto_cwd,
+                                ["H"] = fb_actions.goto_home_dir,
+                                ["p"] = fb_actions.goto_parent_dir,
+                            },
+                        },
+                    },
                     fzf = {
                         fuzzy = true,
                         override_generic_sorter = true,
@@ -328,6 +340,19 @@ return {
         event = "BufEnter",
         config = function()
             require("Comment").setup()
+        end
+    },
+    {
+        "hinell/move.nvim",
+        config = function()
+            norekey("<A-Up>", ":MoveLine -1<CR>", "")
+            norekey("<A-Down>", ":MoveLine 1<CR>", "")
+            norekey("<A-Left>", ":MoveWord -1<CR>", "")
+            norekey("<A-Right>", ":MoveWord 1<CR>", "")
+            xnorekey("<A-Up>", ":MoveBlock -1<CR>", "")
+            xnorekey("<A-Down>", ":MoveBlock 1<CR>", "")
+            xnorekey("<A-Left>", ":MoveHBlock -1<CR>", "")
+            xnorekey("<A-Right>", ":MoveHBlock 1<CR>", "")
         end
     }
 }

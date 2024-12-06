@@ -17,7 +17,7 @@ return {
         "mfussenegger/nvim-dap",
         event = "BufEnter",
         dependencies = {
-            "telescope-nvim/telescope-dap.nvim"
+            "nvim-telescope/telescope-dap.nvim"
         },
         config = function()
             norekey("Db", ":DapToggleBreakpoint<CR>", "Toggle breakpoint")

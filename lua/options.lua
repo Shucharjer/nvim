@@ -5,7 +5,7 @@
 -- vim.g.default_colorscheme = "default"
 
 -- Options
-vim.opt.breakindent = true                              -- Wrap indent to match  line start.
+vim.opt.breakindent = false                             -- Wrap indent to match line start.
 --  使用系统剪贴板
 vim.opt.clipboard = "unnamedplus"                       -- Connection to the system clipboard.
 vim.opt.cmdheight = 0                                   -- Hide command line unless needed.
@@ -37,7 +37,7 @@ vim.opt.showmode = false            -- Disable showing modes in command line.
 vim.opt.showtabline = 4             -- always display tabline.
 vim.opt.signcolumn = "yes"          -- Always show the sign column.
 vim.opt.smartcase = true            -- Case sensitivie searching.
-vim.opt.smartindent = false         -- Smarter autoindentation.
+vim.opt.smartindent = true          -- Smarter autoindentation.
 vim.opt.splitbelow = true           -- Splitting a new window below the current one.
 vim.opt.splitright = true           -- Splitting a new window at the right of the current one.
 vim.opt.tabstop = 4                 -- Number of space in a tab.
@@ -56,12 +56,14 @@ vim.opt.wrap = true                 -- Disable wrapping of lines longer than the
 -- vim.opt.mousescroll = "ver:1,hor:0" -- Disables hozirontal scroll in neovim.
 --  如果希望光标闪烁，把下面一行注释掉
 -- vim.opt.guicursor = "n:blinkon200,i-ci-ve:ver25" -- Enable cursor blink.
-vim.opt.autochdir = true -- Use current file dir as working dir (See project.nvim).
+-- 把当前文件夹当作工作文件夹还是太...
+vim.opt.autochdir = false -- Use current file dir as working dir (See project.nvim).
 -- 如果下面这个值非常大，会让光标始终在屏幕中央那一行
 -- vim.opt.scrolloff = 1000 -- Number of lines to leave before/after the cursor when scrolling. Setting a high value keep the cursor centered.
 vim.opt.scrolloff = 3
-vim.opt.sidescrolloff = 8 -- Same but for side scrolling.
--- vim.opt.selection = "old" -- Don't select the newline symbol when using <End> on visual mode.
+vim.opt.sidescrolloff = 8                                        -- Same but for side scrolling.
+vim.opt.selection =
+"old"                                                            -- Don't select the newline symbol when using <End> on visual mode.
 
 vim.opt.viewoptions:remove "curdir"                              -- Disable saving current directory with views.
 vim.opt.shortmess:append { s = true, I = true }                  -- Disable startup message.
@@ -76,21 +78,20 @@ vim.g.mapleader = " "                                  -- Set leader key.
 vim.g.maplocalleader = ","                             -- Set default local leader key.
 vim.g.big_file = { size = 1024 * 5000, lines = 50000 } -- For files bigger than this, disable 'treesitter' (+5Mb).
 
--- The next globals are toggleable with <space + l + u>
-vim.g.autoformat_enabled = false       -- Enable auto formatting at start.
-vim.g.autopairs_enabled = false        -- Enable autopairs at start.
-vim.g.cmp_enabled = true               -- Enable completion at start.
-vim.g.codeactions_enabled = true       -- Enable displaying 💡 where code actions can be used.
-vim.g.codelens_enabled = true          -- Enable automatic codelens refreshing for lsp that support it.
+vim.g.autoformat_enabled = false                       -- Enable auto formatting at start.
+vim.g.autopairs_enabled = false                        -- Enable autopairs at start.
+vim.g.cmp_enabled = true                               -- Enable completion at start.
+vim.g.codeactions_enabled = true                       -- Enable displaying 💡 where code actions can be used.
+vim.g.codelens_enabled = true                          -- Enable automatic codelens refreshing for lsp that support it.
 --  Linter模式
-vim.g.diagnostics_mode = 3             -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).
-vim.g.fallback_icons_enabled = false   -- Enable it if you need to use Neovim in a machine without nerd fonts.
-vim.g.inlay_hints_enabled = false      -- Enable always show function parameter names.
-vim.g.lsp_round_borders_enabled = true -- Enable round borders for lsp hover and signatureHelp.
-vim.g.lsp_signature_enabled = true     -- Enable automatically showing lsp help as you write function parameters.
-vim.g.notifications_enabled = true     -- Enable notifications.
-vim.g.semantic_tokens_enabled = true   -- Enable lsp semantic tokens at start.
-vim.g.url_effect_enabled = true        -- Highlight URLs with an underline effect.
+vim.g.diagnostics_mode = 3                             -- Set code linting (0=off, 1=only show in status line, 2=virtual text off, 3=all on).
+vim.g.fallback_icons_enabled = false                   -- Enable it if you need to use Neovim in a machine without nerd fonts.
+vim.g.inlay_hints_enabled = false                      -- Enable always show function parameter names.
+vim.g.lsp_round_borders_enabled = true                 -- Enable round borders for lsp hover and signatureHelp.
+vim.g.lsp_signature_enabled = true                     -- Enable automatically showing lsp help as you write function parameters.
+vim.g.notifications_enabled = true                     -- Enable notifications.
+vim.g.semantic_tokens_enabled = true                   -- Enable lsp semantic tokens at start.
+vim.g.url_effect_enabled = true                        -- Highlight URLs with an underline effect.
 
 
 
