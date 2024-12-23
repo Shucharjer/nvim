@@ -20,19 +20,22 @@ return {
             "nvim-telescope/telescope-dap.nvim"
         },
         config = function()
-            norekey("Db", ":DapToggleBreakpoint<CR>", "Toggle breakpoint")
-            norekey("Dr", ":DapContinue<CR>", "Debug")
-            norekey("Di", ":DapStepInto<CR>", "Step into (debug)")
-            norekey("Do", ":DapStepOver<CR>", "Step over (debug)")
-            norekey("DO", ":DapStepOut<CR>", "Step out (debug)")
-            norekey("Dt", ":DapTerminate<CR>", "Terminate (debug)")
-            norekey("Dl", function() require("dap").run_last() end, "Run last (debug)")
+            norekey("<A-b>", ":DapToggleBreakpoint<CR>", "Toggle breakpoint")
+            norekey("<A-B>", function()
+                require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+            end, "Set conditional breakpoint")
+            norekey("<A-r>", ":DapContinue<CR>", "Debug")
+            norekey("<A-i>", ":DapStepInto<CR>", "Step into (debug)")
+            norekey("<A-o>", ":DapStepOver<CR>", "Step over (debug)")
+            norekey("<A-O>", ":DapStepOut<CR>", "Step out (debug)")
+            norekey("<A-t>", ":DapTerminate<CR>", "Terminate (debug)")
+            norekey("<A-l>", function() require("dap").run_last() end, "Run last (debug)")
 
             if utils.is_available("telescope-dap.nvim") then
                 require("telescope").load_extension("dap")
 
-                vim.keymap.set("n", "Dbt", ":Telescope dap list_breakpoints")
-                vim.keymap.set("n", "Dc", ":Telescope dap commands")
+                vim.keymap.set("n", "<A-s>", ":Telescope dap list_breakpoints<CR>")
+                vim.keymap.set("n", "<A-a>", ":Telescope dap commands<CR>")
             end
         end
     },

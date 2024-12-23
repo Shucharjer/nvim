@@ -12,6 +12,8 @@ local norekey = utils.norekey
 local xnorekey = utils.xnorekey
 
 norekey("ng", ":Neogen<CR>", "Generate doxygen comment")
+--  ex      ->  展开表达式
+norekey("ex", function() require("expand_expr").expand() end, "Expand a expression")
 
 return {
     {
@@ -46,10 +48,8 @@ return {
     },
     {
         "AllenDang/nvim-expand-expr",
-        lazy = true,
+        event = "VeryLazy",
         config = function()
-            --  ex      ->  展开表达式
-            norekey("ex", function() require("expand_expr").expand() end, "Expand a expression")
         end
     },
     {

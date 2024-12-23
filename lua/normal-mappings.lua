@@ -18,6 +18,11 @@ inorekey("<C-S>", function()
     vim.lsp.buf.format()
     vim.cmd("w")
 end, "Format and save the file")
+inorekey("<C-l>", "<Esc>:b#<CR>a", "Switch to the recent opened buffer")
+inorekey("<C-b>", "<Esc>I", "Jump to sort begin of the line")
+inorekey("<C-e>", "<Esc>A", "Jump to end of the line")
+-- inorekey("<C-h>", "<Esc>bi")
+-- inorekey("<C-l>", "<Esc>wi")
 
 -------------------------------------------------------------------------------
 -------------------------------------------------------------------------------

@@ -311,7 +311,13 @@ return {
                     style = "icon",
                 },
             },
-        }
+        },
+        config = function(_, opts)
+            require("bufferline").setup(opts)
+            norekey("<A-j>", ":BufferLineCycleNext<CR>", "Next buffer in bufferline")
+            norekey("<A-k>", ":BufferLineCyclePrev<CR>", "Previous buffer in bufferline")
+            norekey("<A-c>", ":BufferLineCloseOthers<CR>", "Close other buffers")
+        end
     },
     {
         "folke/noice.nvim",

@@ -15,20 +15,21 @@
 --      vsnip
 --      vim-vsnip
 -------------------------------------------------------------------------------
+local is_windows = vim.fn.has('win32') == 1
 local utils = require("plugins.utils")
 local inorekey = utils.inorekey
 local norekey = utils.norekey
 local xnorekey = utils.xnorekey
 
 norekey("cb", ":CMakeBuild<CR>", "CMake build")
-norekey("cd", ":CMakeDebug<CR>", "CMake debug")
+norekey("cc", ":CMakeClean<CR>", "CMake clean")
 norekey("cg", ":CMakeGenerate<CR>", "CMake generate")
-norekey("cr", ":CMakeRun<CR>", "CMake run")
 norekey("csc", ":CMakeSelectCwd<CR>", "CMake select cwd")
 norekey("csd", ":CMakeSelectBuildDir<CR>", "CMake select build directory")
 norekey("csp", ":CMakeSelectBuildPreset<CR>", "CMake select build preset")
 norekey("csk", ":CMakeSelectKit<CR>", "CMake select kit")
-norekey("cst", ":CMakeSelectBuildType<CR>", "CMake select build type")
+norekey("cst", ":CMakeSelectBuildTarget<CR>", "CMake select build target")
+norekey("csb", ":CMakeSelectBuildType<CR>", "CMake select build type")
 
 return {
     --  语法分析
@@ -462,10 +463,6 @@ return {
     -- cmake
     {
         "Civitasv/cmake-tools.nvim",
-        -- lazy = false,
-        -- Lazy loading of cmake-tools
-        -- causes the build folder to be generated in the directory
-        -- where the CMake instructions are called.
         cmd = {
             "CMakeBuild",
             "CMakeBuildCurrentFile",
@@ -496,6 +493,13 @@ return {
             "CMakeTargetSettings"
         },
         opts = function()
+            local cmake_tools_kits_path = nil
+            if is_windows then
+                cmake_tools_kits_path = os.getenv("USERPROFILE") .. "\\.config\\cmake_tools_kits.json"
+            else
+                cmake_tools_kits_path = os.getenv("HOME") .. "/.config/cmake_tools_kits.json"
+            end
+
             return {
                 cmake_command = "cmake",
                 ctest_command = "ctest",
@@ -503,9 +507,7 @@ return {
                 cmake_generate_on_save = true,
                 cmake_generate_options = {
                     "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
-                    "-DCMAKE_C_COMPILER=clang",
-                    "-DCMAKE_CXX_COMPILER=clang++",
-                    "-G Ninja"
+                    "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
                 },
                 cmake_build_options = {},
                 cmake_build_directory = "build",
@@ -513,7 +515,8 @@ return {
                 cmake_virtual_text_support = true,
                 build_args = {
                     "-j8",
-                }
+                },
+                cmake_kits_path = cmake_tools_kits_path
             }
         end,
         config = function(_, opts)
