@@ -1,4 +1,4 @@
-[简体中文](readne_zh.md) | Engligh
+[简体中文](readme_zh.md) | Engligh
 
 #### Intro
 
