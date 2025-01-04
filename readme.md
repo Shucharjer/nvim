@@ -1,37 +1,54 @@
+[简体中文](readne_zh.md) | Engligh
+
+#### Intro
+
+##### Appearance
+
+This nvim configuration is mainly for transparent terminals, which means that the effect may look worse in opaque terminals.
+
+##### Features
+
+Probably no features, but there is some features.
+
+- Pure
+  Compared with other nvim configuration files, it is relatively pure.
+- vscode-like foreground
+- Ongoing maintenance
+
 #### Setup
 
 ##### On Windows
 
-###### 安装Chocolatey
+###### Install Chocolatey
 
-Chocolatey是一个支持Windows的包管理工具，能方便地安装一系列软件包
+Chocolatey is a package managment tool for Windows.
 
 ```powershell
 Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
-###### 使用Chocolatey安装neovim, neovide
+###### Install neovim&neovide by Chocolatey
 
-**这一步骤建议在管理员身份下执行(可以按Win+X, A)**
+**Do this in Administrator. (You could press key `Win+X`, `A`)**
 
 ```powershell
 choco install -y python3 nodejs doxygen.install luarocks ripgrep tree-sitter yazi neovim neovide
 ```
 
-###### 安装python和nodejs中nvim的包
+###### Install package in python&nodejs
 
 ```powershell
 pip3 install neovim
 npm install -g neovim
 ```
 
-###### 克隆配置仓库
+###### Clone this repo
 
 ```powershell
 cd ~/AppData/Local
 git clone https://github.com/Shucharjer/nvim.git
 ```
 
-######  还有一件事
+###### One more thing
 
-打开nvim或neovide，等待下载插件和语言服务提供程序
+Open your nvim (or neovide), waiting for downloading.

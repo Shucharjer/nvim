@@ -41,7 +41,7 @@ return {
     },
     {
         "folke/which-key.nvim",
-        event = "VeryLazy",
+        event = "VimEnter",
         opts = {
             preset = "helix"
         }

@@ -79,8 +79,8 @@ return {
                         ["vF"] = { query = "@function.outer", desc = "around function " },
                         ["vl"] = { query = "@loop.inner", desc = "inside loop" },
                         ["vL"] = { query = "@loop.outer", desc = "around loop" },
-                        ["vp"] = { query = "@parameter.inner", desc = "inside argument" },
-                        ["vP"] = { query = "@parameter.outer", desc = "around argument" },
+                        ["vp"] = { query = "@parameter.inner", desc = "inside parameter" },
+                        ["vP"] = { query = "@parameter.outer", desc = "around parameter" },
                     }
                 },
                 --  移动（跳转）

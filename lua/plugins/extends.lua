@@ -54,6 +54,7 @@ return {
     },
     {
         "folke/todo-comments.nvim",
+        event = "BufEnter",
         opts = function()
             return {
                 signs = true,
