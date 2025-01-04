@@ -360,5 +360,33 @@ return {
             xnorekey("<A-Left>", ":MoveHBlock -1<CR>", "")
             xnorekey("<A-Right>", ":MoveHBlock 1<CR>", "")
         end
+    },
+    {
+        "soulis-1256/eagle.nvim",
+        event = "VimEnter",
+        opts = function()
+            return {
+                imporoved_markdown = true,
+                mouse_mode = true,
+                keyboard_mode = false,
+                border = "rounded"
+            }
+        end,
+        config = function(_, opts)
+            require("eagle").setup(opts)
+            vim.o.mousemoveevent = true
+        end
+    },
+    {
+        "sontungexpt/better-diagnostic-virtual-text",
+        event = "BufEnter",
+        opts = function()
+            return {
+                inline = false,
+            }
+        end,
+        config = function(_, opts)
+            require("better-diagnostic-virtual-text").setup(opts)
+        end
     }
 }
