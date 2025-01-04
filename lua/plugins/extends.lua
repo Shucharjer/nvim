@@ -5,6 +5,8 @@
 --  nvim-expand-expr    展开表达式                                 1 key binding
 --  todo-comments       TODO注释
 --  vim-visual-multi    多光标                  some key bindings in the plugin
+--  indent-blankline    缩进线
+--  auto-indent         智能缩进
 -------------------------------------------------------------------------------
 local utils = require("plugins.utils")
 local inorekey = utils.inorekey

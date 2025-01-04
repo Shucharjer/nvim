@@ -1,9 +1,11 @@
 -------------------------------------------------------------------------------
 --  vscode                  颜色主题
+--  which-key               按键映射显示
 --  tfm                     文件管理器           some key bindings in the plugin
 --  plenary                 一个被依赖的底层库
 --  telescope               模糊搜索       7 key bindings (include extionsions)
 --      fzf                 它的扩展
+--      file-browser        它的扩展
 --  leap                    光标移动                              4 key bindings
 --      repeat              它的依赖
 --  autopairs               括号匹配
@@ -14,6 +16,8 @@
 --  noice
 --  comment
 --  move                    移动行/块                            8 key bindings
+--  eagle                   鼠标悬浮文档
+--  better-diagnostic-virtual-text 更好的诊断虚拟文字
 -------------------------------------------------------------------------------
 local utils = require("plugins.utils")
 local inorekey = utils.inorekey
@@ -274,7 +278,7 @@ return {
     },
     {
         "windwp/nvim-autopairs",
-        event = "BufEnter",
+        event = "InsertEnter",
         config = function()
             require("nvim-autopairs").setup()
         end

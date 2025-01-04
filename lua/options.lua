@@ -19,7 +19,8 @@ vim.opt.fillchars = { eob = " " } -- Disable `~` on nonexistent lines.
 vim.opt.foldenable = true         -- Enable fold for nvim-ufo.
 vim.opt.foldlevel = 99            -- set highest foldlevel for nvim-ufo.
 vim.opt.foldlevelstart = 99       -- Start with all code unfolded.
-vim.opt.foldcolumn = "1"          -- Show foldcolumn in nvim 0.9+.
+--  左侧不显示缩进信息
+vim.opt.foldcolumn = "0"          -- Show foldcolumn in nvim 0.9+.
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.ignorecase = true           -- Case insensitive searching.
