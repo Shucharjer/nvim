@@ -17,7 +17,37 @@
 
 #### 启动
 
+##### Unix
+
+###### 通过你的包管理器安装neovim&neovide
+
+取决于你的系统或者包管理器.
+
+###### 安装python和node包
+
+取决于你的系统或者包管理器.
+
+###### 克隆配置仓库
+
+```powershell
+cd ~/AppData/Local
+git clone https://github.com/Shucharjer/nvim.git
+```
+
+###### 还有一件事
+
+打开nvim或neovide，等待下载插件和语言服务提供程序
+
 ##### Windows
+
+-   一个建议：PowerShell
+    PowerShell的体验比原生的Shell好
+    使用PowerShell(微软商店直接搜就行), 然后把终端的`设置/启动/默认配置文件`换成PowerShell
+
+-   另一个建议：Nerd Font
+    Nerd Font中包含许多字符，部分字符会被用来显示一些特殊的内容，比如C++等语言的logo
+    在https://www.nerdfonts.com/font-downloads选择一款自己喜欢的字体, 在安装时最好选Mono(等宽)字体
+    然后把终端的`设置/默认值/外观/字体`选择为刚刚安装的字体(你可能需要彻底关闭终端后重新打开)
 
 ###### 安装Chocolatey
 

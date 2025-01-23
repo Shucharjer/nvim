@@ -17,6 +17,27 @@ Probably no features, but there is some features.
 
 #### Setup
 
+##### On Unix
+
+###### Install neovim&neovide by you local package manager
+
+Up to your os or in an other word, package manager.
+
+###### Install package for python&node
+
+Up to your os or in an other word, package manager.
+
+###### Clone this repo
+
+```powershell
+cd ~/AppData/Local
+git clone https://github.com/Shucharjer/nvim.git
+```
+
+###### One more thing
+
+Open your nvim (or neovide), waiting for downloading.
+
 ##### On Windows
 
 ###### Install Chocolatey
