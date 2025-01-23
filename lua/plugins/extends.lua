@@ -157,5 +157,74 @@ return {
         config = function(_, opts)
             require("auto-indent").setup(opts)
         end
+    },
+    {
+        "kawre/leetcode.nvim",
+        biuld = ":TSUpdate html",
+        dependencies = {
+            "nvim-telescope/telescope.nvim",
+            "nvim-lua/plenary.nvim",
+            "MunifTanjim/nui.nvim"
+        },
+        opts = function()
+            return {
+                lang = "cpp",
+                cn = {
+                    enabled = true,
+                },
+                storage = {
+                    home = vim.fn.stdpath("data") .. "/leetcode",
+                    cache = vim.fn.stdpath("cache") .. "/leetcode"
+                },
+                cache = {
+                    update_interval = 60 * 60 * 24 * 7
+                },
+                injector = {
+                    ["cpp"] = {
+                        before = {
+                            "#include <algorithm>",
+                            "#include <any>",
+                            "#include <array>",
+                            "#include <chrono>",
+                            "#include <coroutine>",
+                            "#include <exception>",
+                            "#include <fstream>",
+                            "#include <functional>",
+                            "#include <future>",
+                            "#include <initializer_list>",
+                            "#include <iostream>",
+                            "#include <limits>",
+                            "#include <map>",
+                            "#include <memory>",
+                            "#include <memory_resource>",
+                            "#include <mutex>",
+                            "#include <numeric>",
+                            "#include <random>",
+                            "#include <ranges>",
+                            "#include <set>",
+                            "#include <shared_mutex>",
+                            "#include <string>",
+                            "#include <string_view>",
+                            "#include <thread>",
+                            "#include <tuple>",
+                            "#include <type_traits>",
+                            "#include <typeindex>",
+                            "#include <typeinfo>",
+                            "#include <unordered_map>",
+                            "#include <unordered_set>",
+                            "#include <utility>",
+                            "#include <variant>",
+                            "#include <vector>", "",
+                            "using namespace std;"
+                        },
+                        after = "int main() {}"
+                    }
+                }
+            }
+        end,
+        config = function(_, opts)
+            require("leetcode").setup(opts)
+            vim.keymap.set("n", "<A-l>", ":Leet ", { noremap = true, silent = false, desc = "Leet" })
+        end
     }
 }
