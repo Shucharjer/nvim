@@ -182,42 +182,11 @@ return {
                 injector = {
                     ["cpp"] = {
                         before = {
-                            "#include <algorithm>",
-                            "#include <any>",
-                            "#include <array>",
-                            "#include <chrono>",
-                            "#include <coroutine>",
-                            "#include <exception>",
-                            "#include <fstream>",
-                            "#include <functional>",
-                            "#include <future>",
-                            "#include <initializer_list>",
-                            "#include <iostream>",
-                            "#include <limits>",
-                            "#include <map>",
-                            "#include <memory>",
-                            "#include <memory_resource>",
-                            "#include <mutex>",
-                            "#include <numeric>",
-                            "#include <random>",
-                            "#include <ranges>",
-                            "#include <set>",
-                            "#include <shared_mutex>",
-                            "#include <string>",
-                            "#include <string_view>",
-                            "#include <thread>",
-                            "#include <tuple>",
-                            "#include <type_traits>",
-                            "#include <typeindex>",
-                            "#include <typeinfo>",
-                            "#include <unordered_map>",
-                            "#include <unordered_set>",
-                            "#include <utility>",
-                            "#include <variant>",
-                            "#include <vector>", "",
-                            "using namespace std;"
+                            '#include "header.hpp"',
                         },
-                        after = "int main() {}"
+                        after = {
+
+                        }
                     }
                 }
             }
