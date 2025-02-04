@@ -21,6 +21,10 @@ local inorekey = utils.inorekey
 local norekey = utils.norekey
 local xnorekey = utils.xnorekey
 
+local feedkey = function(key, mode)
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+end
+
 norekey("cb", ":CMakeBuild<CR>", "CMake build")
 norekey("cc", ":CMakeClean<CR>", "CMake clean")
 norekey("cg", ":CMakeGenerate<CR>", "CMake generate")
@@ -379,6 +383,10 @@ return {
         config = function()
         end
     },
+    {
+        "hrsh7th/cmp-vsnip",
+        lazy = true
+    },
     --  代码补全
     {
         "hrsh7th/nvim-cmp",
@@ -415,7 +423,9 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
+                        if vim.fn["vsnip#expandable"]() == 1 then
+                            feedkey("<Plug>(vsnip-expand)", "")
+                        elseif cmp.visible() then
                             cmp.confirm({ select = true })
                         else
                             fallback()
@@ -423,26 +433,30 @@ return {
                     end
                     ),
                     ["<C-j>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
+                        if vim.fn["vsnip#jumpable"](1) == 1 then
+                            feedkey("<Plug>(vsnip-jump-next)", "")
+                        elseif cmp.visible() then
                             cmp.select_next_item()
                         else
-                            fallback()
+                            -- fallback()
                         end
-                    end
+                    end, { "i", "s" }
                     ),
                     ["<C-k>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
+                        if vim.fn["vsnip#jumpable"](-1) == 1 then
+                            feedkey("<Plug>(vsnip-jump-prev)", "")
+                        elseif cmp.visible() then
                             cmp.select_prev_item()
                         else
-                            fallback()
+                            -- fallback()
                         end
-                    end
+                    end, { "i", "s" }
                     ),
                 }),
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp", priority = 1000 },
-                    { name = "lazydev",  priority = 850 },
-                    { name = "vsnip",    priority = 750 },
+                    { name = "vsnip",    priority = 1000 },
+                    { name = "nvim_lsp", priority = 850 },
+                    { name = "lazydev",  priority = 750 },
                     { name = "buffer",   priority = 500 },
                     { name = "path",     priority = 250 }
                 })
