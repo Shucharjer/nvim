@@ -127,9 +127,9 @@ return {
                 build =
                 "cmake -G Ninja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
             },
-            --{
-            --"nvim-telescope/telescope-dap.nvim"
-            --},
+            {
+                "nvim-telescope/telescope-dap.nvim"
+            },
             --  如果希望使用它的文件浏览器就把注释取消掉
             {
                 "nvim-telescope/telescope-file-browser.nvim"
@@ -148,9 +148,43 @@ return {
         opts = function()
             local actions = require("telescope.actions")
             local fb_actions = nil
+            local file_browser = nil
             if utils.is_available("telescope-file-browser.nvim") then
                 fb_actions = require("telescope").extensions.file_browser.actions
+                file_browser = {
+                    -- disable netr and use telescope-file-browser
+                    hijack_netrw = true,
+                    depth = -1,
+                    auto_depth = true,
+                    ignore = {
+                        "node_modules",
+                        ".git",
+                    },
+                    mappings = {
+                        ["i"] = {
+                            ["<C-n>"] = fb_actions.create,
+                            ["<C-f>"] = fb_actions.create_from_prompt,
+                            ["<C-d>"] = fb_actions.remove,
+                            ["<C-r>"] = fb_actions.rename,
+                            ["<C-m>"] = fb_actions.move,
+                            ["<C-h>"] = fb_actions.goto_cwd,
+                            ["<A-h>"] = fb_actions.goto_home_dir,
+                            ["<C-p>"] = fb_actions.goto_parent_dir,
+                        },
+                        ["n"] = {
+                            ["n"] = fb_actions.create,
+                            ["f"] = fb_actions.create_from_prompt,
+                            ["d"] = fb_actions.remove,
+                            ["r"] = fb_actions.rename,
+                            ["m"] = fb_actions.move,
+                            ["h"] = fb_actions.goto_cwd,
+                            ["H"] = fb_actions.goto_home_dir,
+                            ["p"] = fb_actions.goto_parent_dir,
+                        },
+                    },
+                }
             end
+
 
             return {
                 layout_config = {
@@ -184,38 +218,7 @@ return {
                 },
                 extensions = {
                     --  如果希望使用telescope的文件浏览器就把下面这块的注释取消掉
-                    file_browser = {
-                        -- disable netr and use telescope-file-browser
-                        hijack_netrw = true,
-                        depth = -1,
-                        auto_depth = true,
-                        ignore = {
-                            "node_modules",
-                            ".git",
-                        },
-                        mappings = {
-                            ["i"] = {
-                                ["<C-n>"] = fb_actions.create,
-                                ["<C-f>"] = fb_actions.create_from_prompt,
-                                ["<C-d>"] = fb_actions.remove,
-                                ["<C-r>"] = fb_actions.rename,
-                                ["<C-m>"] = fb_actions.move,
-                                ["<C-h>"] = fb_actions.goto_cwd,
-                                ["<A-h>"] = fb_actions.goto_home_dir,
-                                ["<C-p>"] = fb_actions.goto_parent_dir,
-                            },
-                            ["n"] = {
-                                ["n"] = fb_actions.create,
-                                ["f"] = fb_actions.create_from_prompt,
-                                ["d"] = fb_actions.remove,
-                                ["r"] = fb_actions.rename,
-                                ["m"] = fb_actions.move,
-                                ["h"] = fb_actions.goto_cwd,
-                                ["H"] = fb_actions.goto_home_dir,
-                                ["p"] = fb_actions.goto_parent_dir,
-                            },
-                        },
-                    },
+                    file_browser = file_browser,
                     fzf = {
                         fuzzy = true,
                         override_generic_sorter = true,
@@ -386,7 +389,7 @@ return {
         event = "BufEnter",
         opts = function()
             return {
-                inline = false,
+                inline = true,
             }
         end,
         config = function(_, opts)
