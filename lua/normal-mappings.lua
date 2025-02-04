@@ -50,6 +50,8 @@ vim.keymap.set("n", "rp", ":%s/", { desc = "Replace in file" })
 vim.keymap.set("n", "bd", "bd ", { desc = "Delete buffer (...)" })
 --  bD      ->  删除当前缓冲区
 norekey("bD", ":bd<CR>", "Delete current buffer")
+--  rf      ->  热重载配置文件
+norekey("rf", ":source $MYVIMRC<CR>", "Refresh vimrc")
 
 
 
