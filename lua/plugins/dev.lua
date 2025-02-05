@@ -438,7 +438,7 @@ return {
                         elseif cmp.visible() then
                             cmp.select_next_item()
                         else
-                            -- fallback()
+                            fallback()
                         end
                     end, { "i", "s" }
                     ),
@@ -448,7 +448,7 @@ return {
                         elseif cmp.visible() then
                             cmp.select_prev_item()
                         else
-                            -- fallback()
+                            fallback()
                         end
                     end, { "i", "s" }
                     ),
