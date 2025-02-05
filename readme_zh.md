@@ -1,5 +1,11 @@
 [English](readme.md) | 简体中文
 
+<div style="text-align: center;">
+    <a href="https://wakatime.com/badge/user/c2bf5fd3-fa11-40bd-95ed-8665146ffa80/project/5cf9ad50-181c-4ef6-8e34-39a1f853c170">
+        <img src="https://wakatime.com/badge/user/c2bf5fd3-fa11-40bd-95ed-8665146ffa80/project/5cf9ad50-181c-4ef6-8e34-39a1f853c170.svg" alt="wakatime">
+    </a>
+</div>
+
 #### 介绍
 
 ##### 外观
