@@ -38,11 +38,18 @@ end
 
 local function get_lazy_spec()
     local basic = require("plugins.basic")
-    local lsp = require("plugins.dev")
-    local debug = require("plugins.debug")
-    local extends = require("plugins.extends")
+    local mason = require("plugins.mason")
+    local cmp = require("plugins.cmp")
+    local lsp = require("plugins.lsp")
+    local treesitter = require("plugins.treesitter")
+    local dbg = require("plugins.debug")
+    local project = require("plugins.project")
+    local git = require("plugins.git")
+    local external = require("plugins.external")
+    local lazydev = require("plugins.lazydev")
+    local leetcode = require("plugins.leetcode")
 
-    return merge_configs(basic, lsp, debug, extends)
+    return merge_configs(basic, mason, cmp, lsp, treesitter, dbg, project, git, external, lazydev, leetcode)
 end
 
 local function startup(lazypath)

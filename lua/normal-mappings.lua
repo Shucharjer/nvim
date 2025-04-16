@@ -1,4 +1,4 @@
-local utils = require("plugins.utils")
+local utils = require("utils")
 local is_available = utils.is_available
 
 local inorekey = utils.inorekey
