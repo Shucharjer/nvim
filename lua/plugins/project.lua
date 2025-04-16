@@ -4,6 +4,9 @@ return {
     -- cmake
     {
         "Civitasv/cmake-tools.nvim",
+        ft = {
+            "c", "cpp", "cmake"
+        },
         opts = function()
             local cmake_tools_kits_path = nil
             local cmake_toolchainfile_path = nil
