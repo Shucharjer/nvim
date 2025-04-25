@@ -7,7 +7,7 @@
 -------------------------------------------------------------------------------
 
 local is_windows = vim.fn.has('win32') == 1
-local utils = require("plugins.utils")
+local utils = require("utils")
 local inorekey = utils.inorekey
 local norekey = utils.norekey
 local xnorekey = utils.xnorekey
