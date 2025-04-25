@@ -508,10 +508,13 @@ return {
         },
         opts = function()
             local cmake_tools_kits_path = nil
+            local cmake_toolchain_file = nil
             if is_windows then
                 cmake_tools_kits_path = os.getenv("USERPROFILE") .. "\\.config\\cmake_tools_kits.json"
+                cmake_toolchain_file = "C:/vcpkg/scripts/buildsystems/vcpkg.cmake"
             else
                 cmake_tools_kits_path = os.getenv("HOME") .. "/.config/cmake_tools_kits.json"
+                cmake_toolchain_file = "/vcpkg/scripts/buildsystems/vcpkg.cmake"
             end
 
             return {
@@ -520,7 +523,7 @@ return {
                 cmake_use_preset = false,
                 cmake_generate_on_save = true,
                 cmake_generate_options = {
-                    "-DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                    "-DCMAKE_TOOLCHAIN_FILE=" .. cmake_toolchain_file,
                     "-DCMAKE_EXPORT_COMPILE_COMMANDS=1"
                 },
                 cmake_build_options = {},
@@ -528,7 +531,7 @@ return {
                 cmake_build_type = "RelWithDebInfo",
                 cmake_virtual_text_support = true,
                 build_args = {
-                    "-j8",
+                    "-j18",
                 },
                 cmake_kits_path = cmake_tools_kits_path
             }

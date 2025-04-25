@@ -27,7 +27,7 @@ return {
             norekey("<A-r>", ":DapContinue<CR>", "Debug")
             norekey("<A-i>", ":DapStepInto<CR>", "Step into (debug)")
             norekey("<A-o>", ":DapStepOver<CR>", "Step over (debug)")
-            norekey("<A-O>", ":DapStepOut<CR>", "Step out (debug)")
+            norekey("<A-u>", ":DapStepOut<CR>", "Step out (debug)")
             norekey("<A-t>", ":DapTerminate<CR>", "Terminate (debug)")
             norekey("<A-l>", function() require("dap").run_last() end, "Run last (debug)")
 
