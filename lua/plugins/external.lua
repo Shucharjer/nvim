@@ -14,11 +14,11 @@ return {
             require("neogen").setup(opts)
             local wk = require("which-key")
             wk.add({
-                { "<leader>gd", "<cmd>Neogen<cr>",      desc = "Generate doxygen comment" },
-                { "<leader>gf", "<cmd>Neogen func<cr>", desc = "Generate doxygen comment for this function" },
-                { "<leader>gF", "<cmd>Neogen file<cr>", desc = "Generate doxygen comment for this file" },
-                { "<leader>gc", "<cmd>Neogen file<cr>", desc = "Generate doxygen comment for this class" },
-                { "<leader>gt", "<cmd>Neogen file<cr>", desc = "Generate doxygen comment for this type" },
+                { "<leader>gd", "<cmd>Neogen<cr>",       desc = "Generate doxygen comment" },
+                { "<leader>gf", "<cmd>Neogen func<cr>",  desc = "Generate doxygen comment for this function" },
+                { "<leader>gF", "<cmd>Neogen file<cr>",  desc = "Generate doxygen comment for this file" },
+                { "<leader>gc", "<cmd>Neogen class<cr>", desc = "Generate doxygen comment for this class" },
+                { "<leader>gt", "<cmd>Neogen type<cr>",  desc = "Generate doxygen comment for this type" },
             })
         end
     },
