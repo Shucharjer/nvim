@@ -44,7 +44,7 @@ vim.opt.splitright = true           -- Splitting a new window at the right of th
 vim.opt.tabstop = 4                 -- Number of space in a tab.
 
 vim.opt.termguicolors = true        -- Enable 24-bit RGB color in the TUI.
-vim.opt.undofile = true             -- Enable persistent undo between session and reboots.
+vim.opt.undofile = false            -- Disable persistent undo between session and reboots.
 vim.opt.updatetime = 300            -- Length of time to wait before triggering the plugin.
 vim.opt.virtualedit = "block"       -- Allow going past end of line in visual block mode.
 vim.opt.writebackup = false         -- Disable making a backup before overwriting a file.
