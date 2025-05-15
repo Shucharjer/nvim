@@ -28,11 +28,16 @@ return {
                             "clangd",
                             "--background-index",
                             "--clang-tidy",
+                            "--query-driver=/usr/bin/clang++,/usr/bin/g++",
+                            "--compile-commands-dir=build",
                             "--completion-style=detailed",
                             "--function-arg-placeholders=false",
                             "--suggest-missing-includes",
                             "-j=12",
                             "--pch-storage=memory"
+                        },
+                        init_options = { 
+                            fallbackFlags = { "-std=c++20" }
                         }
                     })
                 end,
