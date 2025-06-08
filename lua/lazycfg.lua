@@ -48,8 +48,10 @@ local function get_lazy_spec()
     local external = require("plugins.external")
     local lazydev = require("plugins.lazydev")
     local leetcode = require("plugins.leetcode")
+    local tmux = require("plugins.tmux")
+    local ai = require("plugins.ai")
 
-    return merge_configs(basic, mason, cmp, lsp, treesitter, dbg, project, git, external, lazydev, leetcode)
+    return merge_configs(basic, mason, cmp, lsp, treesitter, dbg, project, git, external, lazydev, leetcode, tmux, ai)
 end
 
 local function startup(lazypath)

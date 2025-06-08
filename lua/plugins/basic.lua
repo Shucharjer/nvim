@@ -182,8 +182,8 @@ return {
                 { "<leader>f",  group = "Find" },
                 { "<leader>ff", "<cmd>Telescope fd<cr>",                        desc = "Find file" },
                 { "<leader>fb", "<cmd>Telescope current_buffer_fuzzy_find<cr>", desc = "Fuzzy find" },
-                { "<leader>fp", "<cmd>Telescope live_grep<cr>",                 desc = "Live grep" },
-                { "<leader>fs", "<cmd>Telescope grep_string<cr>",               desc = "grep_string" },
+                { "<leader>fg", "<cmd>Telescope live_grep<cr>",                 desc = "Live grep" },
+                { "<leader>fw", "<cmd>Telescope grep_string<cr>",               desc = "grep string" },
 
                 { "<leader>bl", "<cmd>Telescope buffers<cr>",                   desc = "Buffer list" }
             })
@@ -201,10 +201,12 @@ return {
         event = "VeryLazy",
         opts = {},
         keys = {
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-            { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash treesitter" },
-            { "r", mode = "o",               function() require("flash").remote() end,            desc = "Remote flash" },
-            { "R", mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Treesitter search" },
+            { "s",         mode = { "n", "x" }, function() require("flash").jump() end,              desc = "Flash" },
+            { "S",         mode = { "n", "x" }, function() require("flash").treesitter() end,        desc = "Flash treesitter" },
+            { "<leader>j", mode = { "o" },      function() require("flash").jump() end,              desc = "Flash" },
+            { "<leader>J", mode = { "o" },      function() require("flash").treesitter() end,        desc = "Flash treesitter" },
+            { "r",         mode = "o",          function() require("flash").remote() end,            desc = "Remote flash" },
+            { "R",         mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter search" },
         }
     },
     -- leap
@@ -273,11 +275,17 @@ return {
             require("bufferline").setup(opts)
             local wk = require("which-key")
             wk.add({
-                { "<A-j>", "<cmd>BufferLineCycleNext<cr>",   desc = "Next buffer in bufferline" },
-                { "<A-k>", "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous buffer in bufferline" },
-                { "<A-c>", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
-                { "<A-h>", "<cmd>BufferLineMovePrev<cr>" },
-                { "<A-l>", "<cmd>BufferLineMoveNext<cr>" },
+                { "<a-e>",       "<cmd>BufferLineCycleNext<cr>",   desc = "Next buffer in bufferline" },
+                { "<a-q>",       "<cmd>BufferLineCyclePrev<cr>",   desc = "Previous buffer in bufferline" },
+                { "<a-c>",       "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
+                { "<a-Q>",       "<cmd>BufferLineMovePrev<cr>",    desc = "Move to previous buffer" },
+                { "<a-E>",       "<cmd>BufferLineMoveNext<cr>",    desc = "Move to next buffer" },
+                { "<a-p>",       "<cmd>BufferLinePick<cr>",        desc = "Pick a buffer" },
+                { "<a-P>",       "<cmd>BufferLinePickClose<cr>",   desc = "Pick & close a buffer" },
+
+                { "<leader>bch", "<cmd>BufferLineCloseLeft<cr>",   desc = "Close left buffers" },
+                { "<leader>bcl", "<cmd>BufferLineCloseRight<cr>",  desc = "Close right buffers" },
+                { "<leader>bco", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" }
             })
         end
     },

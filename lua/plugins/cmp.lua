@@ -70,8 +70,8 @@ return {
                     ),
                 }),
                 sources = cmp.config.sources({
-                    { name = "vsnip",    priority = 1000 },
                     { name = "nvim_lsp", priority = 850 },
+                    { name = "vsnip",    priority = 800 },
                     { name = "lazydev",  priority = 750 },
                     { name = "buffer",   priority = 500 },
                     { name = "path",     priority = 250 }
