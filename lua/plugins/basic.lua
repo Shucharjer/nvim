@@ -313,9 +313,26 @@ return {
         }
     },
     -- multi cursor
+    -- {
+    --     "mg979/vim-visual-multi",
+    --     tag = "master",
+    -- },
     {
-        "mg979/vim-visual-multi",
-        tag = "master",
+        "smoka7/multicursors.nvim",
+        event = "VeryLazy",
+        dependencies = {
+            "nvimtools/hydra.nvim"
+        },
+        opts = {},
+        cmd = { "MCstart", "MCVisual", "MCclear", "MCpattern", "MCvisualPattern", "MCunderCursor" },
+        keys = {
+            {
+                mode = { "v", "n" },
+                "<leader>m",
+                "<cmd>MCstart<cr>",
+                desc = "Create a selection for selected text or word under the cursor"
+            }
+        }
     },
     -- enchanced indent
     {

@@ -28,7 +28,7 @@ return {
         config = function()
             local wk = require("which-key")
             wk.add({
-                { "<leader>mw", "<cmd>WakaTimeToday<cr>", desc = "Wakatime today" }
+                { "<leader>iw", "<cmd>WakaTimeToday<cr>", desc = "Wakatime today" }
             })
         end
     },
