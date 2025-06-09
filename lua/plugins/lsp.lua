@@ -15,6 +15,7 @@ return {
         config = function(_, opts)
             require("mason-lspconfig").setup(opts)
             local lspconfig = require("lspconfig")
+            local is_windows = vim.fn.has('win32') == 1
 
             require("mason-lspconfig").setup_handlers({
                 --  默认配置
@@ -23,13 +24,18 @@ return {
                 end,
 
                 ["clangd"] = function()
+                    local query_driver = nil
+                    if is_windows then
+                        query_driver = "C:/Program Files/LLVM/bin/clang++"
+                    else 
+                        query_driver = "--query-driver=/usr/bin/clang++,/usr/bin/g++",
+                    end
                     lspconfig.clangd.setup({
                         cmd = {
                             "clangd",
                             "--background-index",
                             "--clang-tidy",
-                            "--query-driver=/usr/bin/clang++,/usr/bin/g++",
-                            "--compile-commands-dir=build",
+                            query_driver
                             "--completion-style=detailed",
                             "--function-arg-placeholders=false",
                             "--suggest-missing-includes",
