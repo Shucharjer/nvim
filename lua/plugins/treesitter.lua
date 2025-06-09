@@ -217,6 +217,7 @@ return {
                 { "K",           "<cmd>Lspsaga hover_doc<cr>",                  desc = "Hover document at the cursor" },
 
                 { "<leader>l",   group = "Lsp \u{e64e}" },
+                { "<leader>la",  "<cmd>Lspsaga code_action<cr>",                desc = "Code action" },
                 { "<leader>lr",  "<cmd>Lspsaga rename<cr>",                     desc = "Rename the symbol",                  icon = "" },
                 { "<leader>lo",  "<cmd>Lspsaga outline<cr>",                    desc = "Show symbol outline",                icon = "" },
                 { "<leader>lf",  "<cmd>Lspsaga finder<cr>",                     desc = "Find",                               icon = "" },
