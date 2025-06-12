@@ -26,16 +26,16 @@ return {
                 ["clangd"] = function()
                     local query_driver = nil
                     if is_windows then
-                        query_driver = "C:/Program Files/LLVM/bin/clang++"
-                    else 
-                        query_driver = "--query-driver=/usr/bin/clang++,/usr/bin/g++",
+                        query_driver = "--query-driver=C:/Program Files/LLVM/bin/clang++"
+                    else
+                        query_driver = "--query-driver=/usr/bin/clang++,/usr/bin/g++"
                     end
                     lspconfig.clangd.setup({
                         cmd = {
                             "clangd",
                             "--background-index",
                             "--clang-tidy",
-                            query_driver
+                            query_driver,
                             "--completion-style=detailed",
                             "--function-arg-placeholders=false",
                             "--suggest-missing-includes",

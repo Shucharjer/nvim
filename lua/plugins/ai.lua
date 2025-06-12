@@ -1,7 +1,14 @@
 local is_windows = vim.fn.has('win32') == 1
 
-local use_absolte_path = false
-if is_windows then use_absolte_path = true end
+local avante_build_command = "make"
+local avante_use_absolte_path = false
+if is_windows then 
+    avante_build_command = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+    use_absolte_path = true
+
+    -- BUG: in makefile
+    return {}
+end
 
 return {
     {
@@ -38,7 +45,7 @@ return {
                 ft = { "markdown", "Avante" }
             }
         },
-        build = "make",
+        build = avante_build_command,
         opts = {
             provider = "deepseek",
             providers = {
