@@ -51,7 +51,7 @@ return {
                 { "<leader>cs",  group = "Select" },
                 { "<leader>csk", "<cmd>CMakeSelectKit<cr>",         desc = "Select tool kit" },
                 { "<leader>cst", "<cmd>CMakeSelectBuildTarget<cr>", desc = "Select build target" },
-                { "<leader>csT", "<cmd>CMakeSelectKit<cr>",         desc = "Select build type" },
+                { "<leader>csT", "<cmd>CMakeSelectBuildType<cr>",   desc = "Select build type" },
                 { "<leader>csw", "<cmd>CMakeSelectCwd<cr>",         desc = "Select current workspace" }
             })
         end
