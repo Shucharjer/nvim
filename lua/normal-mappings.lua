@@ -33,8 +33,8 @@ inorekey("<C-e>", "<Esc>A", "Jump to end of the line")
 
 
 ------------------------------------------------------------------nvim, neovim-
---  fm      ->  格式化
-norekey("fm", function() vim.lsp.buf.format() end, "Fomat the document")
+--  <leader>lF ->  格式化
+norekey("<leader>lF", function() vim.lsp.buf.format() end, "Fomat the document")
 --  Ctrl+s  ->  格式化并保存
 norekey("<C-s>", function()
     vim.lsp.buf.format()

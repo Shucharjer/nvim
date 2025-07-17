@@ -459,5 +459,8 @@ return {
                 }
             }
         end
+    },
+    {
+        "xiyaowong/nvim-cursorword"
     }
 }

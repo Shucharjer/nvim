@@ -51,3 +51,5 @@ nbghl("CocFloating")
 nbghl("Pmenu")
 nbghl("CursorLine")
 nbghl("ColorColumn")
+
+vim.api.nvim_set_hl(0, "CursorWord", { underline = true })
