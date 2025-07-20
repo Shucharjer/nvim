@@ -461,6 +461,13 @@ return {
         end
     },
     {
-        "xiyaowong/nvim-cursorword"
+        "xiyaowong/nvim-cursorword",
+        event = "BufEnter"
+    },
+    {
+        'nacro90/numb.nvim',
+        config = function()
+            require('numb').setup()
+        end
     }
 }

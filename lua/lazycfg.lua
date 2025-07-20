@@ -65,16 +65,16 @@ local function startup(lazypath)
     require("lazy").setup({
         spec,
         -- performance = {
-        -- rtp = {
-        -- -- Disable unnecessary nvim features to speed up startup.
-        -- disabled_plugins = {
-        -- "tohtml",
-        -- "gzip",
-        -- "zipPlugin",
-        -- "netrwPlugin",
-        -- "tarPlugin",
-        -- },
-        -- },
+        --     rtp = {
+        --         -- Disable unnecessary nvim features to speed up startup.
+        --         disabled_plugins = {
+        --             "tohtml",
+        --             "gzip",
+        --             "zipPlugin",
+        --             "netrwPlugin",
+        --             "tarPlugin",
+        --         },
+        --     },
         -- },
         -- -- Enable luarocks if installed.
         -- rocks = { enabled = vim.fn.executable("luarocks") == 1 },
